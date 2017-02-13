@@ -47,7 +47,25 @@ function draw() {
                 pacmanChomp.stop();
                 pacmanEat.play();
                 pacman.size = pacman.size * 1.1;
+                score++;
             }
+        }
+    }
+}
+// pause the game
+function keyPressed() {
+    var pause = false
+    if (keyCode == 32) {
+        pause = !pause
+        if (pause) {
+            pacman.runspeed = 0;
+            pacman.mouthspeed = 0;
+            pacman.playCue = false;
+        }
+        if (!pause) {
+            pacman.runspeed = 3;
+            pacman.mouthspeed = 1.5 * pacman.runspeed
+            pacman.playCue = true;
         }
     }
 }
@@ -58,7 +76,6 @@ function Pacman(x, y, size) {
     this.y = y;
     //pacmans' size
     this.size = size;
-
     //pacman's arc angles
     this.eyedeg = 25;
     this.eDegR = radians(this.eyedeg);
@@ -92,21 +109,21 @@ function Pacman(x, y, size) {
 
 
     };
-    this.move = function() {
-        this.playCue = false;
-        if ( /*keyIsDown(37) || keyIsDown(39) ||*/ keyIsDown(38) || keyIsDown(40)) {
-            this.mouthdeg = this.mouthdeg + this.mouthspeed;
-            this.playCue = true
-            if (this.mouthdeg >= 40 || this.mouthdeg <= 5) {
-                if (this.mouthdeg >= 40) {
-                    this.mouthdeg = 40;
-                }
-                if (this.mouthdeg <= 5) {
-                    this.mouthdeg = 5;
-                }
-                this.mouthspeed = this.mouthspeed * -1;
-            }
+    // if chomp sound plays
+    this.playCue = true
 
+    this.move = function() {
+        this.mouthdeg = this.mouthdeg + this.mouthspeed;
+        if (this.mouthdeg >= 40 || this.mouthdeg <= 5) {
+            if (this.mouthdeg >= 40) {
+                this.mouthdeg = 40;
+            }
+            if (this.mouthdeg <= 5) {
+                this.mouthdeg = 5;
+            }
+            this.mouthspeed = this.mouthspeed * -1;
+        }
+        if ( /*keyIsDown(37) || keyIsDown(39) ||*/ keyIsDown(38) || keyIsDown(40)) {
             if (keyIsDown(38)) {
                 this.x = this.x;
                 this.y = this.y - this.runspeed;
