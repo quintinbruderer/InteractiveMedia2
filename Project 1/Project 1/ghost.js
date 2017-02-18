@@ -1,5 +1,6 @@
 function Ghost(x, y) {
-    this.ouch = false
+    this.ouch = false;
+    this.pain = 1.5;
     this.ghostSize = 70;
     this.gx = x;
     this.gy = y;
@@ -35,8 +36,8 @@ function Ghost(x, y) {
             x3 = x3 + gIncriment
         }
         fill('white'); //figured I'd try yet another method of "fill"
-        ellipse(-16, -this.ghostSize / 4, 25, 30);
-        ellipse(16, -this.ghostSize / 4, 25, 30);
+        ellipse(-16, -this.ghostSize / 3.5, 25, 28);
+        ellipse(16, -this.ghostSize / 3.5, 25, 28);
         fill('#263e88') // blue eyes
         //this.eYe     size/4 is center, size/3 is looking up, size/6 is looking down.
         ellipse(-16, -this.eYe, 10, 10);
@@ -59,7 +60,7 @@ function Ghost(x, y) {
     this.collide = function(pacman) {
         this.ouch = collideCircleCircle(this.gx, this.gy, 70, pacman.x, pacman.y, pacman.size);
         if (this.ouch) {
-            pacman.size = pacman.size - 1.5;
+            pacman.size = pacman.size - this.pain;
         }
     }
 }

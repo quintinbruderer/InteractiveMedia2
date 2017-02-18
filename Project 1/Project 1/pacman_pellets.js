@@ -9,7 +9,7 @@ function Pacman(x, y, size) {
     this.eDegR = radians(this.eyedeg);
     this.mouthdeg = 5;
     this.runspeed = 3;
-    this.mouthspeed = 1.5 * this.runspeed;
+    this.mouthspeed = 1.2 * this.runspeed;
 
     this.display = function() {
         push();
@@ -71,10 +71,19 @@ function Pacman(x, y, size) {
         }
         if (this.playCue) {
             var playing = pacmanChomp.isPlaying()
-            console.log(playing);
-            console.log("eat", pacmanEat.isPlaying());
+            //console.log(playing);
+            //console.log("eat", pacmanEat.isPlaying());
             if (!playing && !pacmanEat.isPlaying()) {
                 pacmanChomp.play();
+            }
+        }
+        if (this.y + (this.size / 2) >= height || this.y - (this.size / 2) <= 0) {
+          pacman.size = pacman.size - 1.5;
+            if (this.y + (this.size / 2) >= height) {
+                this.y = height - (this.size / 2);
+            }
+            if (this.y - (this.size / 2) <= 0) {
+                this.y = 0 + (this.size / 2);
             }
         }
     }
@@ -85,7 +94,7 @@ function PacPellet(size) {
     this.pacSize = size
     this.yum = false;
     this.px = random(100, width - 10);
-    this.py = random(this.pacSize / 2, height - (this.pacSize / 2)); //75 is pacmans size, so we're getting Radius
+    this.py = random(this.pacSize / 4, height - (this.pacSize / 4)); //75 is pacmans size, so we're getting Radius
     this.display = function() {
         push();
         noStroke();
@@ -97,7 +106,7 @@ function PacPellet(size) {
         this.collide = function(pacman) {
             this.yum = collideCircleCircle(this.px, this.py, 15, pacman.x, pacman.y, pacman.size);
             if (this.yum) {
-                console.log("hit");
+                //console.log("hit");
             }
         }
     }
