@@ -52,7 +52,7 @@ function draw() {
         push();
         textAlign(CENTER);
         textSize(35);
-        text("Aim to collect as many Pac-Pellets as Possible!", width/2, 3/4 *height + 10);
+        text("Stay Large! Collect as many Pac-Pellets as Possible!", width/2, 3/4 *height + 10);
         text("Control using Up and Down Arrow Keys. Space Bar to Pause.", width/2, 3/4 * height + 45);
         pop();
     } else {
