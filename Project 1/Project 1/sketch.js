@@ -25,6 +25,13 @@ function setup() {
     //createCanvas(1200, 700);
     createCanvas(screen.width, screen.height);
     frameRate(30);
+    push();
+    fill(225, 72, 53);
+    for (var p = 1; p < width; p + 5) {
+        rect(p, 1, 5, 5, 2);
+        rect(p, height, 5, 5, 2);
+    }
+    pop();
     pacX = 50;
     pacY = height / 2;
     ghostX = random(width / 2, width - 50); //giving space for ghost
@@ -40,6 +47,7 @@ function setup() {
 
 function draw() {
     background(0);
+
     ScreenRefresh();
     pacman.display();
 
@@ -52,8 +60,8 @@ function draw() {
         push();
         textAlign(CENTER);
         textSize(35);
-        text("Stay Large! Collect as many Pac-Pellets as Possible!", width/2, 3/4 *height + 10);
-        text("Control using Up and Down Arrow Keys. Space Bar to Pause.", width/2, 3/4 * height + 45);
+        text("Stay Large! Collect as many Pac-Pellets as Possible!", width / 2, 3 / 4 * height + 10);
+        text("Control using Up and Down Arrow Keys. Space Bar to Pause.", width / 2, 3 / 4 * height + 45);
         pop();
     } else {
         if (!theme.isPlaying()) {
