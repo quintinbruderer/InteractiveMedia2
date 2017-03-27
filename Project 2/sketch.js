@@ -2,20 +2,28 @@ var ghostA;
 var ghostB;
 var ghostC;
 var ghostArr = [];
-var whoIsIt = 0; //temporary mandating who is it. Remove and unhide setup floor
+var whoIsIt = 2; //temporary mandating who is it. Remove and unhide setup floor
+
+var bounds = {
+    size: 0
+};
 
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     //var whoIsIt = floor(random(2.99));
 
+    bounds.left = 0 - bounds.size;
+    bounds.right = windowWidth + bounds.size;
+    bounds.top = 0 - bounds.size;
+    bounds.bottom = windowHeight + bounds.size;
 
     var bluGhost = '#4adfcb';
     var redGhost = '#ff3a10';
     var yelGhost = '#ffbe56';
-    ghostA = new Ghost(random(width), random(height), bluGhost)
-    ghostB = new Ghost(random(width), random(height), redGhost)
-    ghostC = new Ghost(random(width), random(height), yelGhost)
+    ghostA = new Ghost(random(width), random(height), bluGhost, 3, 'blue')
+    ghostB = new Ghost(random(width), random(height), redGhost, 4, 'red')
+    ghostC = new Ghost(random(width), random(height), yelGhost, 2, 'yell')
     ghostArr = [ghostA, ghostB, ghostC];
     //var colArray = [bluGhost, redGhost, yelGhost];
     // for (var i = 0; i < 3; i++) {
@@ -27,8 +35,9 @@ function setup() {
 }
 
 function draw() {
-    console.log(ghostArr[whoIsIt].gCol);// add back into setup upon completion
+
     background(180);
+    text(frameRate(), 20, 20);
     // ghosts.forEach(function(GhostTest, idx) {
     //     ghostTest.display();
     //     //ghosts[i].display();
