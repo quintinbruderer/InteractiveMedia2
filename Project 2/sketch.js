@@ -2,7 +2,7 @@ var ghostA;
 var ghostB;
 var ghostC;
 var ghostArr = [];
-var whoIsIt = 2; //temporary mandating who is it. Remove and unhide setup floor
+var whoIsIt = 1; //temporary mandating who is it. Remove and unhide setup floor
 
 var bounds = {
     size: 0

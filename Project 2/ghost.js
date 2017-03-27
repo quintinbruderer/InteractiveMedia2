@@ -95,7 +95,7 @@ function Ghost(x, y, color, maxSpeed, id) {
         var dist2 = this.pos.dist(ghost2.pos);
         if (!this.ImIT) {
             if (ghost1.ImIT) {
-                if (dist1 < 300) {
+                if (dist1 < 250) {
 
                     // this.velocity = p5.Vector.sub(ghost1.pos, this.pos);
                     // this.velocity.normalize();
@@ -111,7 +111,7 @@ function Ghost(x, y, color, maxSpeed, id) {
                     this.fear();
                 }
             } else if (ghost2.ImIT) {
-                if (dist2 < 300) {
+                if (dist2 < 250) {
                     // this.velocity = p5.Vector.sub(ghost2.pos, this.pos);
                     // this.velocity.normalize()
                     // this.velocity.mult(3)
@@ -157,7 +157,7 @@ function Ghost(x, y, color, maxSpeed, id) {
                     this.acc = p5.Vector.sub(ghost2.pos, this.pos);
                 }
                 this.velocity.add(this.acc);
-                this.velocity.limit(this.maxSpeed + 2);
+                this.velocity.limit(this.maxSpeed + 3);
             }
             if (dist1 < this.size * 0.75) {
                 this.ImIT = false;
@@ -173,8 +173,9 @@ function Ghost(x, y, color, maxSpeed, id) {
     this.attackB = function(ghost1, ghost2) { //working on getting red to sometimes get yellow
         if (this.ImIT) {
             var distB = this.pos.dist(ghost1.pos);
+            var distY = this.pos.dist(ghost2.pos);
             if (frameCount % 60 == 0) { //red takes 1 second to process.
-                if (distB < 150) {
+                if (distY < 300) {
                     this.acc = p5.Vector.sub(ghost2.pos, this.pos);
                 } else {
                     this.acc = p5.Vector.sub(ghost1.pos, this.pos);
@@ -195,20 +196,31 @@ function Ghost(x, y, color, maxSpeed, id) {
     }
 
     this.attackC = function(ghost1, ghost2) {
+        this.yelRand;
+        if (frameCount % 120 == 0) {
+            this.yelRand = round(random(1, 2)); //although quick to decide, targets 1 ghost for 2 seconds
+        }
         if (this.ImIT) {
+          var dist1 = this.pos.dist(ghost1.pos);
+          var dist2 = this.pos.dist(ghost2.pos);
             if (frameCount % 10 == 0) { //yellow quickly decides. Very quick think type.
-                if (frameCount % 120 == 0) {
-                  var yelRand = round(random(1, 2));
-                } //although quick to decide, sticks to 1 ghost for a solid
-                if (yelRand == 1) {
+                if (this.yelRand == 1) {
                     this.acc = p5.Vector.sub(ghost1.pos, this.pos);
                 } else {
                     this.acc = p5.Vector.sub(ghost2.pos, this.pos);
                 }
             }
+            if (dist1 < this.size * 0.75) {
+                this.ImIT = false;
+                ghost1.setImIt();
+            }
+            if (dist2 < this.size * 0.75) {
+                this.ImIT = false;
+                ghost2.setImIt();
+            }
             this.velocity.add(this.acc);
-            this.velocity.limit(this.maxSpeed + 2);
-            console.log(yelRand);
+            this.velocity.limit(this.maxSpeed * 3.5);
+            console.log(this.yelRand);
         }
         this.pos.add(this.velocity);
     }
