@@ -10,4 +10,4 @@ This is the 2nd project of the 2017 Spring Semester at UMT in Interactive Media 
 - And unique decision making...
 - in a relatively basic environment.
 
-[This](https://youtu.be/iEH4TZKhVzQ) is a video documentation of the project.
+[This](https://youtu.be/EGfR3AZQj2o) is a video documentation of the project.
