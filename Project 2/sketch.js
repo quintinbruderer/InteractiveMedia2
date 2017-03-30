@@ -2,7 +2,6 @@ var ghostA;
 var ghostB;
 var ghostC;
 var ghostArr = [];
-var whoIsIt = 1; //temporary mandating who is it. Remove and unhide setup floor
 
 var bounds = {
     size: 0
@@ -11,7 +10,7 @@ var bounds = {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    //var whoIsIt = floor(random(2.99));
+    var whoIsIt = floor(random(2.99));
 
     bounds.left = 0 - bounds.size;
     bounds.right = windowWidth + bounds.size;
@@ -37,7 +36,6 @@ function setup() {
 function draw() {
 
     background(180);
-    text(frameRate(), 20, 20);
     // ghosts.forEach(function(GhostTest, idx) {
     //     ghostTest.display();
     //     //ghosts[i].display();
